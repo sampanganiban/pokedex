@@ -12,3 +12,6 @@
 */
 
 Route::get('/', 'HomeController@index');
+
+// Create a route for the register page
+Route::get('auth/register', 'Auth\AuthController@getRegister');
