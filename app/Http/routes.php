@@ -13,5 +13,8 @@
 
 Route::get('/', 'HomeController@index');
 
-// Create a route for the register page
+// Create a route to the register page
 Route::get('auth/register', 'Auth\AuthController@getRegister');
+
+// Create a route for where the registration form will go
+Route::post('auth/register', 'Auth\AuthController@postRegister');

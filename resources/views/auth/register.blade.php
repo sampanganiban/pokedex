@@ -31,7 +31,6 @@
 			<div>
 				<label for="password_confirmation">Confirm Password:</label>
 				<input type="password" id="password_confirmation" name="password_confirmation">
-				{{$errors->first('password_confirmation')}}
 			</div>
 
 			<input type="submit" class="tiny button" value="Start Catchin'">
