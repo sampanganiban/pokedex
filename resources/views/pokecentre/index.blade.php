@@ -13,7 +13,9 @@
 		</ul>
 		
 		<h3>Global Statistics:</h3>
-		<p><strong>Total Registered Trainers:</strong> {{ $totalTrainers }}</p>
+		<ul>
+			<li><strong>Total Registered Trainers:</strong> {{ $totalTrainers }}</li>
+		</ul>
 
 	</div>
 </div>
