@@ -22,6 +22,9 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 // Create a route for where the registration form will go
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('pokecentre', 'PokecentreController@index');
+Route::get('pokecentre/capture', 'PokecentreController@capture');
+Route::post('pokecentre/capture', 'PokecentreController@postCapture');
 
 // Display the pokedex
 Route::get('pokedex', 'PokedexController@index');
+Route::get('pokedex/{name}', 'PokedexController@show');

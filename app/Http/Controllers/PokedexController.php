@@ -49,9 +49,13 @@ class PokedexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        //
+        // Get additional information about the Pokemon
+        $info = Pokemon::where('name', $name)->firstOrFail();
+
+        // Show the contents of that pokemon on a view
+        return view('pokedex.show', compact('info'));
     }
 
     /**
