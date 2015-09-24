@@ -20,6 +20,7 @@
 		</ul>
 			
 		<a href="/pokecentre/capture" class="tiny button">Add your Capture</a>
+		<a href="/pokecentre/captures" class="tiny button">See your Captures ({{ $totalTrainerCaptures }})</a>
 	</div>
 </div>
 

@@ -25,6 +25,12 @@ Route::get('pokecentre', 'PokecentreController@index');
 Route::get('pokecentre/capture', 'PokecentreController@capture');
 Route::post('pokecentre/capture', 'PokecentreController@postCapture');
 
+// To view the trainers captures
+Route::get('pokecentre/captures', 'PokecentreController@getCaptures');
+Route::post('pokecentre/captures', 'PokecentreController@postCaptures');
+Route::get('pokecentre/captures/{id}/edit', 'PokecentreController@editCapture');
+Route::post('pokecentre/captures/{id}', 'PokecentreController@updateCapture');
+
 // Display the pokedex
 Route::get('pokedex', 'PokedexController@index');
 Route::get('pokedex/{name}', 'PokedexController@show');
