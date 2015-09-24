@@ -36,4 +36,10 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    // A user has many captures
+    public function capture() {
+        return $this->hasMany( 'App\Capture' );
+    }
+
 }

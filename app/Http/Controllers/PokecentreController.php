@@ -24,12 +24,17 @@ class PokecentreController extends Controller
      */
     public function index()
     {
-        
         // Find out how many registered users there are
-        $totalTrainers = User::all()->count();
+        $totalTrainers        = User::all()->count();
+        
+        // How many captures the trainer who is logged in has made
+        $totalTrainerCaptures = Capture::where('user_id', \Auth::user()->id)->count();
+
+        // How many captures were made by all trainers
+        $totalGlobalCaptures  = Capture::all()->count();
 
         // Show the contents of the pokecentre using its view
-        return view('pokecentre.index', compact('totalTrainers'));
+        return view('pokecentre.index', compact('totalTrainers', 'totalTrainerCaptures', 'totalGlobalCaptures'));
     }
 
     // Function to allow the trainer to capture their pokemons
@@ -55,15 +60,28 @@ class PokecentreController extends Controller
         $capture = new Capture();
 
         // Put the data from form into the database
-        $capture->photo      = 'test.jpg';
+
+        // Generating the file name
+        $fileName = uniqid().'.'.$request->file('photo')->getClientOriginalExtension();
+        
+        // Takes an instance of the intervention image and use its make method
+        // To reference the photo take the request and point to its file method and reference the name of the file you want to find
+        // Use the resize method and add its width and height
+        // The save method, where you want to save
+        \Image::make( $request->file('photo') )
+                ->resize(320,null, function($constraint){$constraint->aspectRatio();})
+                ->save('img/captures/'.$fileName);
+
+        $capture->photo      = $fileName;
         $capture->user_id    = \Auth::user()->id;
         $capture->pokemon_id = $request->pokemon;
 
-        // And save it!
+        // And save it to the database!
         $capture->save();
 
         // Find out the name of the pokemon the user just captured
-        // find or fail by default looks for the id and we have the id of the pokemon, it is pokemon because the field name was just called pokemon, not id
+        // Find or fail by default looks for the id and we have the id of the pokemon
+        // It is pokemon because the field name was just called pokemon, not id
         $pokemon = Pokemon::findOrFail($request->pokemon);
 
         return redirect('pokedex/'.$pokemon->name);

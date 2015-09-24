@@ -8,7 +8,8 @@
 			<hr>
 			<ul>
 				@foreach( $allPokemon as $pokemon)
-				<li><a href="{{ url('pokedex/'.$pokemon->name) }}">{{ $pokemon->name }}</a></li>
+					<li><a href="{{ url('pokedex/'.$pokemon->name) }}">{{ $pokemon->name }}</a> </li>
+					<em>times caught:</em> {{ $pokemon->capture->count() }} 
 				@endforeach
 			</ul>
 		</div>
